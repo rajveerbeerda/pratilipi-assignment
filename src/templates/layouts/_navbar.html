@@ -1,0 +1,50 @@
+<div class="navbar navbar-expand-sm navbar-main navbar-dark bg-dark pr-0 mdk-header--fixed mdk-header--shadow" id="navbar" data-primary>
+    <div class="container">
+
+        <!-- Navbar toggler -->
+        {% if 'fluid' in prefix or 'mini' in prefix %}
+        <button class="navbar-toggler navbar-toggler-custom navbar-toggler-right d-block" type="button" data-toggle="sidebar">
+        <span class="material-icons">apps</span>
+      </button> {% else %}
+        <button class="navbar-toggler navbar-toggler-right d-block d-md-none" type="button" data-toggle="sidebar">
+        <span class="navbar-toggler-icon"></span>
+      </button> {% endif %}
+
+        <!-- Navbar Brand -->
+        <a href="/" class="navbar-brand {{ navbarBrandClass or '' }}">
+            <img class="navbar-brand-icon" src="{{ url_for('static', filename='assets/images/logo.png') }}" width="35" alt="Pratilipi Logo">
+            <img class="navbar-brand-icon" src="{{ url_for('static', filename='assets/images/text.png') }}" width="80" style="-webkit-filter: invert(1);filter: invert(1);" alt="Pratilipi Brand">
+        </a>
+
+        {% if 'mini' in prefix %}
+        <div class="navbar-collapse collapse flex">
+            {% include 'layouts/_navbar.menu.html' %}
+        </div>
+        {% endif %}
+
+        <div class="flex"></div>
+
+        
+
+        <ul class="nav navbar-nav d-none d-sm-flex border-left navbar-height align-items-center">
+            <li class="nav-item dropdown">
+                <a href="#account_menu" class="nav-link dropdown-toggle" data-toggle="dropdown" data-caret="false">
+                    <img src="{{ url_for('static', filename='dist/img/user_avatar/no_avatar.png') }}" alt="MindHug No Avatar" class="rounded-circle" width="32" >
+          <span class="ml-1 d-flex-inline">
+            <span class="text-light">Hi, {{ current_user.first_name }}! <i class="fa fa-caret-down ml-1"></i></span>
+          </span>
+        </a>
+                <div id="account_menu" class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-item-text dropdown-item-text--lh">
+                        <div><strong>{{ current_user.first_name }} {{ current_user.last_name }}</strong></div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item{% if slug == 'dashboard' %} active{% endif %}" href="/">Dashboard</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ url_for('auth_bp.logout') }}">Logout</a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>

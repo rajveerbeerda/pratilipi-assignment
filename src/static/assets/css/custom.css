@@ -1,0 +1,216 @@
+#avatarUpload {
+  display: none;
+}
+#avatar:hover {
+  opacity: 0.5;
+}
+#avatar {
+  cursor: pointer;
+  box-shadow: 0 0 29px 0 rgba(0, 0, 0, 0.72);
+}
+
+/* content player start*/
+.rating {
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.like,
+.dislike {
+  display: inline-block;
+  color: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.dislike:hover,
+.like:hover {
+  color: #2EBDD1;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.active {
+  color: #2EBDD1;
+}
+
+.happyactive {
+  color: green;
+}
+
+.neutralactive {
+  color: DodgerBlue;
+}
+
+.sadactive {
+  color: orange;
+}
+
+.angryactive {
+  color: red;
+}
+
+.otheractive {
+    color: blue;
+  }
+
+.happy,
+.sad,
+.angry,
+.neutral,
+.other{
+  display: inline-block;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.happy:hover {
+  color: green;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.sad:hover {
+  color: orange;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.angry:hover {
+  color: red;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.neutral:hover {
+  color: DodgerBlue;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.other:hover {
+    color: blue;
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+  }
+
+.form-popup {
+  text-align: center;
+  position: relative;
+  display: none;
+  padding: 60px;
+  width: 614px;
+  height: 350px;
+  margin-top: -45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid #f1f1f1;
+  z-index: 0;
+  margin-bottom: -68px;
+}
+
+.create-goal {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  background: white;
+  z-index: 99;
+  transform: translate(-50%, -50%);
+  border: 3px solid #f1f1f1;
+  width: 500px;
+  padding: 50px;
+  height: 440px;
+  overflow: auto;
+  justify-content: center;
+  border-radius: 10px;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+}
+
+.display-goal {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  background: white;
+  z-index: 99;
+  transform: translate(-50%, -50%);
+  border: 3px solid #f1f1f1;
+  width: 700px;
+  padding: 50px;
+  height: auto;
+  overflow: auto;
+  justify-content: center;
+  border-radius: 10px;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+}
+
+.mood-entry-form {
+    text-align: center;
+    display: block;
+    /*align-self: center;*/
+    position: absolute;
+    padding: 20px;
+    width: 500px;
+    /*top: 50%;
+    left: 50%;*/
+    /*transform: translate(-50%, -50%);*/
+    border: 3px solid #f1f1f1;
+  }
+
+/* content player end */
+
+/* questionnaire start */
+.questionnaire ul {
+    list-style-type: none;
+    margin-left: -30px;
+}
+
+#question input {
+    background: none !important;
+    border: none !important;
+    color: #ffffff;
+    font-weight: bold;
+    outline: none;
+}
+
+#question input[type="radio"] {
+
+}
+
+#question input[type="submit"] {
+    background: #48BA16;
+    border: none !important;
+    color: #ffffff;
+    font-weight: bold;
+    outline: none;
+}
+
+#question input:hover[type="submit"] {
+    background: none !important;
+    border: none !important;
+    color: #ffffff;
+    font-weight: bold;
+    outline: none;
+}
+/* questionnaire end */
+
+
+/* clean spacing */
+.clean-spacing {
+  margin-top: 200px;
+}
+/* cleaning spacing end */
+
+/* content view all filter */
+.filterDiv {
+  display: none;
+}
+.show {
+  display: block;
+}
+/* content view all filter end */

@@ -1,0 +1,137 @@
+{% extends "layouts/fixed.html" %}
+
+{% block page %}
+
+{% if current_user.is_authenticated %}
+
+<div class="container page__heading-container">
+  <div class="page__heading d-flex align-items-center">
+    <div class="flex">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ story.title }}
+          </li>
+        </ol>
+      </nav>
+      <h1 class="m-0">
+        {{ story.title }}
+      </h1>
+
+    </div>
+  </div>
+</div>
+  
+<div class="container page__container">
+  <div class="row">
+    <div class="col-lg-8">
+      <span href="" class="dp-preview card mb-4">
+      </span>
+      <div>
+
+      <p class="mb-4" id="story_content" style="line-height:2em;display: none">
+        {% for i in content.split('\n') %}
+          {{ i }}
+          <br>
+        {% endfor %}
+      </p>
+      <p id="read_content"><a href="javascript:void(0)" onclick="readStory()">Click here</a> to read full story</p>
+
+      <div class="mb-4 text-center">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card card-body">
+
+        <div class="list-group list-group-flush mb-4">
+          <div class="list-group-item bg-transparent d-flex align-items-center px-0">
+            <strong>Author</strong>
+            <div class="ml-auto">{{ story.author }}</div>
+          </div>
+          <div class="list-group-item bg-transparent d-flex align-items-center px-0">
+            <strong>Views</strong>
+            <div class="ml-auto">
+              <span id="total_views">{{ total_views }}</span>
+              <script>
+                  document.getElementById("total_views").innerHTML;
+              </script>
+            </div>
+          </div>
+          <div class="list-group-item bg-transparent d-flex align-items-center px-0">
+            <strong>Live Views</strong>
+            <div class="ml-auto">
+              <span id="live_views">{{ live_views }}</span>
+              <script>
+                  document.getElementById("live_views").innerHTML;
+              </script>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+<script type="text/javascript">
+  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  var intervalID = setInterval(update_values,1000);
+
+  function update_values() {
+    $.getJSON($SCRIPT_ROOT + '/live_data/{{ story.id }}',
+
+    function(data) {
+      $('#live_views').text(data.live_views);
+      $('#total_views').text(data.total_views);
+    });
+
+  };
+
+  function stopTextColor() {
+    clearInterval(intervalID);
+  }
+
+
+  function updateCount(data) {
+    var asJSON = JSON.stringify(data);
+    $.ajax({
+      url: '/update-count',
+      data: asJSON,
+      type: 'POST',
+      success: function(response){
+        console.log(response);
+      },
+      error: function(error){
+          console.log(error);
+      }
+    })
+  }
+
+  function readStory() {
+    document.getElementById('story_content').style.display = 'block';
+    document.getElementById('read_content').style.display = 'none';
+    updateCount({'story_id': '{{ story.id }}', 'value': 1, 'total_views': 1});
+  }
+
+  window.addEventListener('beforeunload', function (e) {
+    e.preventDefault(); 
+    e.returnValue = '';
+
+    if(document.getElementById('read_content').style.display=='none') {
+      updateCount({'story_id': '{{ story.id }}', 'value': -1});
+    }
+
+  }); 
+</script>
+
+{% endblock %}
+
+

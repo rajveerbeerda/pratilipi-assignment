@@ -1,0 +1,22 @@
+# OS X files
+.history
+.htaccess
+.DS_Store
+
+# Python
+venv
+*.pyc
+*.pyo
+*.pyd
+venv_dev
+venv_local
+pyvenv.cfg
+__pycache__
+__init__COPY
+Pipfile.lock
+
+# Others
+.vscode
+Procfile
+*.sqlite
+.webassets-cache

@@ -1,0 +1,55 @@
+{% extends "layouts/fixed.html" %}
+
+{% block page %}
+
+{% if current_user.is_authenticated %}
+
+<div class="container page__heading-container">
+  <div class="page__heading d-flex align-items-center">
+    <div class="flex">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item active" aria-current="page">Home</li>
+        </ol>
+      </nav>
+      <h1 class="m-0">Dashboard</h1>
+    </div>
+  </div>
+</div>
+<div class="container page__container">
+	<div class="d-flex flex-row align-items-center my-3">
+    <div class="form-inline text-dark-gray">
+      <strong>Stories</strong>
+    </div>
+    <div class="ml-auto">
+        <span class="text-muted">View More</span> <a href="/view-all-stories" class="icon-muted"><i class="material-icons float-right">arrow_forward</i></a>
+    </div>
+  </div>
+
+	<div class="row">
+		{% for i in range(0, stories.count()) %}
+    <div class="col-sm-6 col-md-3">
+      <div class="card stories-card-popular">
+        <img src="{{ url_for('static', filename='bg.jpg') }}" alt="" class="card-img">
+        <div class="stories-card-popular__content">
+          <div class="stories-card-popular__title card-body">
+            <a href="/view-story/{{ stories[i].id }}">
+              <h6 class="card-title m-0" style="color:#ffffff;">{{ stories[i].title }}</h6>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    {% if stories.count()==0 %}
+    	<div class="col-sm-12 col-md-12">
+    		<p>No stories available now.</p>
+    	</div>
+    {% endif %}
+  </div>
+
+</div>
+{% endif %}
+
+{% endblock %}

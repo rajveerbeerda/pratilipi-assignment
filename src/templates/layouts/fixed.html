@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{ title }}</title>
+
+  {% include 'layouts/_header.html' %}
+
+</head>
+<body class="layout-fixed">
+
+  <div class="mdk-header-layout js-mdk-header-layout">
+
+    {% block header %}
+      <div id="header" class="mdk-header bg-dark js-mdk-header m-0" data-fixed data-effects="waterfall">
+        <div class="mdk-header__content">
+          {% block navbar %}
+            {% include 'layouts/_navbar.html' %}
+          {% endblock %}
+        </div>
+      </div>
+    {% endblock %}
+
+    <div style="padding-top: 100px">
+      {% block page %} {% endblock %}
+    </div>
+    
+  </div>
+  
+  {% include 'layouts/_footer.html' %}
+
+</body>
+</html>

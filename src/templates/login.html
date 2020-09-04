@@ -1,0 +1,71 @@
+{% extends "layouts/blank.html" %}
+
+{% block page %}
+<div class="layout-login__overlay"></div>
+<div class="layout-login__form bg-white">
+  <div class="d-flex justify-content-center mt-2 mb-5 navbar-light">
+    <div class="navbar-brand">
+      <img class="navbar-brand-icon" src="{{ url_for('static', filename='assets/images/logo.png') }}" width="35" alt="Pratilipi Logo">
+      <img class="navbar-brand-icon" src="{{ url_for('static', filename='assets/images/text.png') }}" width="80" alt="Pratilipi Brand">
+    </div>
+  </div>
+
+  <h4 class="m-0">Welcome back!</h4>
+  <p class="mb-5">Login to access your Account </p>
+
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    {% if category=='success' %}
+      <div class="alert alert-success" id="errordiv">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="material-icons mr-3">check</i> {{ message }} 
+      </div>
+    {% elif category=='warning' %}
+      <div class="alert alert-warning" id="errordiv">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="material-icons mr-3">warning</i> {{ message }} 
+      </div>
+    {% elif category=='info' %}
+      <div class="alert alert-info" id="errordiv">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="material-icons mr-3">info_outline</i> {{ message }} 
+      </div>
+    {% else %}
+      <div class="alert alert-danger" id="errordiv">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="material-icons mr-3">error_outline</i> {{ message }} 
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <form method="POST" action="/login">
+    <div class="form-group">
+      <label class="text-label" for="email_2">Email Address</label>
+      <div class="input-group input-group-merge">
+        <input id="email" name="email" type="email" required="" class="form-control form-control-prepended" placeholder="example@email.com">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <span class="far fa-envelope"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-4">
+      <label class="text-label" for="password_2">Password</label>
+      <div class="input-group input-group-merge">
+        <input id="password" name="password" type="password" required="" class="form-control form-control-prepended" placeholder="Enter Password">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <span class="fa fa-key"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group text-center mb-5">
+      <button class="btn btn-primary btn-block" type="submit">Login</button><br>
+      Don't have an account? <a class="text-body text-underline" href="{{ url_for('auth_bp.register') }}">Sign up!</a>
+    </div>
+
+  </form>
+
+</div>
+{% endblock %}
