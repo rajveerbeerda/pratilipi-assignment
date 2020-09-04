@@ -1,10 +1,10 @@
-# flask-auth
+# Pratilipi Assignment
 
 ### Steps to run on local
 
 - Clone repository
 ```
-git clone https://github.com/rajveerbeerda/flask-auth.git
+https://github.com/rajveerbeerda/pratilipi-assignment.git
 ```
 
 - Move to directory
